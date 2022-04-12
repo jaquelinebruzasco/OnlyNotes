@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_notes"
+        android:icon="@drawable/ic_notes_icon"
+        android:title="@string/fragment_menu_notes" />
+
+    <item
+        android:id="@+id/nav_categories"
+        android:icon="@drawable/ic_edit_category_icon"
+        android:title="@string/fragment_menu_category" />
+
+    <item
+        android:id="@+id/nav_trash"
+        android:icon="@drawable/ic_trash_icon"
+        android:title="@string/fragment_menu_trash" />
+</menu>

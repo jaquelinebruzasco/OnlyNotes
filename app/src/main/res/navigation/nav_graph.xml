@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
+        <deepLink
+            android:id="@+id/deepLink1"
+            app:uri="onlynotes://home" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="onlynotes://category" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.EditNoteFragment"
+        android:label="EditNoteFragment"
+        tools:layout="@layout/fragment_edit_note" />
+    <fragment
+        android:id="@+id/trashFragment"
+        android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.TrashFragment"
+        android:label="TrashFragment"
+        tools:layout="@layout/fragment_trash">
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:uri="onlynotes://trash" />
+    </fragment>
+</navigation>
