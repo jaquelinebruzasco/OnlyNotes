@@ -30,7 +30,13 @@
         android:id="@+id/editNoteFragment"
         android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.EditNoteFragment"
         android:label="EditNoteFragment"
-        tools:layout="@layout/fragment_edit_note" />
+        tools:layout="@layout/fragment_edit_note" >
+        <argument
+            android:name="editNotes"
+            app:argType="com.jaquelinebruzasco.onlynotes.domain.local.model.NotesModel"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
     <fragment
         android:id="@+id/trashFragment"
         android:name="com.jaquelinebruzasco.onlynotes.ui.fragments.TrashFragment"

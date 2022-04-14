@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/default_margin"
         app:cardElevation="@dimen/default_margin"
-        app:layout_constraintBottom_toTopOf="@id/button_discard"
+        app:layout_constraintBottom_toTopOf="@id/iv_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,12 +22,12 @@
             android:padding="@dimen/default_margin">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_enter_name"
+                android:id="@+id/et_enter_title"
                 style="@style/Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/fragment_edit_note_name"
+                android:hint="@string/fragment_edit_note_title"
                 android:maxLength="100"
                 android:maxLines="3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
                 app:layout_constraintBottom_toTopOf="@id/et_enter_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_enter_name" />
+                app:layout_constraintTop_toBottomOf="@id/et_enter_title" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_enter_text"
@@ -63,36 +63,32 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/button_discard"
-        style="@style/OnlyNotesButtonStyle"
+    <ImageView
+        android:id="@+id/iv_delete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_edit_note_discard"
+        android:src="@drawable/ic_trash_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_categorize"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_categorize"/>
 
-    <Button
-        android:id="@+id/button_categorize"
-        style="@style/OnlyNotesButtonStyle"
+    <ImageView
+        android:id="@+id/iv_categorize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/default_margin"
-        android:text="@string/fragment_edit_note_categorize"
+        android:src="@drawable/ic_category_icon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_save"
-        app:layout_constraintStart_toEndOf="@id/button_discard" />
+        app:layout_constraintEnd_toStartOf="@id/iv_save"
+        app:layout_constraintStart_toEndOf="@id/iv_delete" />
 
-    <Button
-        android:id="@+id/button_save"
-        style="@style/OnlyNotesButtonStyle"
+    <ImageView
+        android:id="@+id/iv_save"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_edit_note_save"
+        android:src="@drawable/ic_save_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_categorize" />
+        app:layout_constraintStart_toEndOf="@id/iv_categorize" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
