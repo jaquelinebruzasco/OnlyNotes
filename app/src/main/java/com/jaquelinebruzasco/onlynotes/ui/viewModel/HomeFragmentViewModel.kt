@@ -30,6 +30,10 @@ class HomeFragmentViewModel @Inject constructor(
             }
         }
     }
+
+    fun delete(notesModel: NotesModel) = viewModelScope.launch {
+        repository.delete(notesModel)
+    }
 }
 
 sealed class OnlyNotesState {

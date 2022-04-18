@@ -18,5 +18,9 @@ class EditNoteFragmentViewModel @Inject constructor(
             repository.insert(notesModel)
         }
     }
+
+    fun delete(notesModel: NotesModel) = viewModelScope.launch {
+        repository.delete(notesModel)
+    }
 }
 

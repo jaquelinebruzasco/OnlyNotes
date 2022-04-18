@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.jaquelinebruzasco.onlynotes.R
 import com.jaquelinebruzasco.onlynotes.databinding.FragmentHomeBinding
 import com.jaquelinebruzasco.onlynotes.domain.local.model.NotesModel
 import com.jaquelinebruzasco.onlynotes.ui.fragments.adapters.NoteListAdapter
@@ -64,6 +68,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = noteListAdapter
         }
+        ItemTouchHelper(itemTouchHelperCallback()).attachToRecyclerView(rvNoteList)
     }
 
     private fun initView() {
@@ -76,8 +81,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToEditNote(data: NotesModel) {
-        val navigation = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment()
+        val navigation = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(data)
         findNavController().navigate(navigation)
+    }
+
+    private fun itemTouchHelperCallback(): ItemTouchHelper.SimpleCallback{
+        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val note = noteListAdapter.getNoteAtPosition(viewHolder.adapterPosition)
+                note?.let {
+                    viewModel.delete(it).also {
+                        Toast.makeText(requireContext(), R.string.delete_note, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 }
 

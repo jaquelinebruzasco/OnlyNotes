@@ -11,4 +11,6 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="empty_title_alert">Please, insert a title.</string>
+    <string name="delete_note">The note was removed.</string>
+    <string name="discard_note">The note was discarded.</string>
 </resources>

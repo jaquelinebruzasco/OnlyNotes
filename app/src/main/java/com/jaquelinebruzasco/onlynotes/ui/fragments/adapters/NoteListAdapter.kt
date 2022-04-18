@@ -1,5 +1,6 @@
 package com.jaquelinebruzasco.onlynotes.ui.fragments.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,5 +37,11 @@ class NoteListAdapter(
             binding.root.setOnClickListener { action(data) }
         }
     }
+
+    fun getNoteAtPosition(position: Int): NotesModel? {
+        return list[position]
+    }
+
+
 
 }

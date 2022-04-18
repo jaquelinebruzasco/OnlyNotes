@@ -5,11 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.jaquelinebruzasco.onlynotes.databinding.FragmentCategoryBinding
+import com.jaquelinebruzasco.onlynotes.domain.local.model.CategoryModel
+import com.jaquelinebruzasco.onlynotes.ui.fragments.adapters.CategoryListAdapter
+import com.jaquelinebruzasco.onlynotes.ui.viewModel.CategoryFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoryFragment : Fragment() {
 
+    private val viewModel by viewModels<CategoryFragmentViewModel>()
     private lateinit var _binding: FragmentCategoryBinding
+    private val categoryListAdapter by lazy { CategoryListAdapter(::editCategory, ::deleteCategory) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,5 +30,12 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun editCategory(data: CategoryModel) {
+    }
+
+    private fun deleteCategory(data: CategoryModel) {
+
     }
 }

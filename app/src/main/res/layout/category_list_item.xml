@@ -25,16 +25,16 @@
             tools:text="Category name" />
 
         <ImageView
-            android:id="@+id/ib_edit_category"
+            android:id="@+id/iv_edit_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit_icon"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ib_delete_category"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete_category"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ib_delete_category"
+            android:id="@+id/iv_delete_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_trash_icon"
