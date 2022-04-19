@@ -8,9 +8,15 @@
     <string name="fragment_edit_note_text">Enter text…</string>
     <string name="fragment_category_enter">Enter category…</string>
     <string name="fragment_category_add">Add</string>
+    <string name="fragment_bottom_sheet_dialog_edit">Edit category name</string>
+    <string name="fragment_bottom_sheet_dialog_enter">Enter category...</string>
+    <string name="fragment_bottom_sheet_dialog_save">Save</string>
+    <string name="fragment_bottom_sheet_dialog_cancel">Cancel</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="empty_title_alert">Please, insert a title.</string>
     <string name="delete_note">The note was removed.</string>
     <string name="discard_note">The note was discarded.</string>
+    <string name="empty_category_alert">Please, insert a category.</string>
+    <string name="new_category_alert">Please, insert a new category name.</string>
 </resources>
