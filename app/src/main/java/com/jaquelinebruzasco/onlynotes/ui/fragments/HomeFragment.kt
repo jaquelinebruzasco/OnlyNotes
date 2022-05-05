@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
                 when (state) {
                     is OnlyNotesState.Empty -> {
                         _binding.tvEmptyList.visibility = View.VISIBLE
+                        noteListAdapter.list = mutableListOf()
                     }
                     is OnlyNotesState.Success -> {
                         _binding.tvEmptyList.visibility = View.GONE

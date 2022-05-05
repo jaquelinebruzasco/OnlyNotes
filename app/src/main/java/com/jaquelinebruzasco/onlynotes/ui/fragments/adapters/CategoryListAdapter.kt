@@ -32,7 +32,7 @@ class CategoryListAdapter(
             fun bind(data: CategoryModel) {
                 binding.apply {
                     tvCategoryName.text = data.name
-                    ivEditCategory.setOnClickListener { actionEdit(data) }
+                    root.setOnClickListener { actionEdit(data) }
                     ivDeleteCategory.setOnClickListener { actionDelete(data) }
                 }
             }

@@ -10,7 +10,7 @@ data class NotesModel(
     val id: Int? = null,
     val title: String?,
     val text: String?,
-    val category: String = ""
+    val category: String? = ""
 ): Serializable
 
 

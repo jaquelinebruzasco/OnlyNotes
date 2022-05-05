@@ -29,7 +29,7 @@ class EditCategoryBSDFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding.apply {
             etEditCategory.setText(category.name)
-            btnSave.setOnClickListener {
+            ivSave.setOnClickListener {
                 val newCategoryName = etEditCategory.text.toString()
                 when {
                     newCategoryName.isBlank() -> {
@@ -49,10 +49,11 @@ class EditCategoryBSDFragment(
                     else -> {
                         category.name = newCategoryName
                         save.invoke(category)
+                        this@EditCategoryBSDFragment.dismiss()
                     }
                 }
             }
-            btnCancel.setOnClickListener { this@EditCategoryBSDFragment.dismiss() }
+            ivCancel.setOnClickListener { this@EditCategoryBSDFragment.dismiss() }
         }
     }
 

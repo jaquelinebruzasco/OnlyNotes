@@ -25,6 +25,12 @@ class EditNoteFragment : Fragment() {
 
     private val args: EditNoteFragmentArgs by navArgs()
 
+    private var hasCategory = false
+
+    private companion object {
+        const val BOTTOM_SHEET_TAG = "categorizeBottomSheetFragment"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,6 +44,7 @@ class EditNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadInfo(args.editNotes)
+        showCategorizeButton()
 
         _binding.ivSave.setOnClickListener {
             if (_binding.etEnterTitle.text.toString().isBlank()) {
@@ -67,24 +74,50 @@ class EditNoteFragment : Fragment() {
         }
     }
 
+
     private fun loadInfo(data: NotesModel?) {
         _binding.apply {
             data?.let {
                 (etEnterTitle as TextView).text = it.title
                 (etEnterText as TextView).text = it.text
+                tvCategory.text = it.category
             }
         }
     }
-
 
     private fun saveNote() {
         viewModel.insert(
             NotesModel(
                 id = args.editNotes?.id,
                 title = _binding.etEnterTitle.text.toString(),
-                text = _binding.etEnterText.text.toString()
+                text = _binding.etEnterText.text.toString(),
+                category = if (hasCategory) _binding.tvCategory.text.toString() else args.editNotes?.category
             )
         )
         findNavController().popBackStack()
     }
+
+    private fun showCategorizeButton() {
+        if (args.editNotes != null) {
+            _binding.apply {
+                _binding.ivCategorize.visibility = View.VISIBLE
+                _binding.ivCategorize.setOnClickListener {
+                    args.editNotes?.let {
+                        val dialog = CategorizeBSDFragment(it, ::onCategorySaved)
+                        dialog.isCancelable = false
+                        dialog.show(requireActivity().supportFragmentManager, BOTTOM_SHEET_TAG)
+                    }
+                }
+            }
+        } else {
+            _binding.ivCategorize.visibility = View.GONE
+        }
+    }
+
+    private fun onCategorySaved(note: NotesModel) {
+        hasCategory = true
+        _binding.tvCategory.text = note.category
+    }
+
+
 }

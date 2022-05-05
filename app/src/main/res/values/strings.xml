@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">OnlyNotes</string>
     <string name="fragment_home_empty">You don\'t have any note.</string>
+    <string name="fragment_category_empty">You don\'t have any category.</string>
     <string name="fragment_menu_notes">Notes</string>
     <string name="fragment_menu_category">Edit category</string>
     <string name="fragment_menu_trash">Trash</string>
@@ -10,8 +11,7 @@
     <string name="fragment_category_add">Add</string>
     <string name="fragment_bottom_sheet_dialog_edit">Edit category name</string>
     <string name="fragment_bottom_sheet_dialog_enter">Enter category...</string>
-    <string name="fragment_bottom_sheet_dialog_save">Save</string>
-    <string name="fragment_bottom_sheet_dialog_cancel">Cancel</string>
+    <string name="fragment_bottom_sheet_dialog_categorize_select">Select category</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
     <string name="empty_title_alert">Please, insert a title.</string>
