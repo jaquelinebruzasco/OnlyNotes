@@ -38,5 +38,6 @@ class HomeFragmentViewModel @Inject constructor(
 
 sealed class OnlyNotesState {
     object Empty : OnlyNotesState()
+    object Loading : OnlyNotesState()
     class Success(val data: List<NotesModel>) : OnlyNotesState()
 }

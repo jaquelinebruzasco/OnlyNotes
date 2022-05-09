@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +21,7 @@ import com.jaquelinebruzasco.onlynotes.ui.fragments.adapters.NoteListAdapter
 import com.jaquelinebruzasco.onlynotes.ui.viewModel.EditNoteFragmentViewModel
 import com.jaquelinebruzasco.onlynotes.ui.viewModel.HomeFragmentViewModel
 import com.jaquelinebruzasco.onlynotes.ui.viewModel.OnlyNotesState
+import com.jaquelinebruzasco.onlynotes.util.normalizeString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -79,6 +81,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(navigation)
             }
         }
+        performSearch()
     }
 
     private fun navigateToEditNote(data: NotesModel) {
@@ -105,6 +108,39 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun performSearch() {
+        _binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    val finalText = newText.normalizeString()
+                    val newList: MutableList<NotesModel?>
+                    if (finalText.length >= 2) {
+                        newList = noteListAdapter.list.filter { notes ->
+                            notes?.title?.normalizeString()?.contains(finalText) ?: false
+                        }.toMutableList()
+                        if (newList.size > 0) {
+                            noteListAdapter.list = newList.toMutableList()
+                            _binding.rvNoteList.visibility = View.VISIBLE
+                            _binding.tvEmptyList.visibility = View.GONE
+                        } else {
+                            _binding.rvNoteList.visibility = View.GONE
+                            _binding.tvEmptyList.visibility = View.VISIBLE
+                        }
+                    } else {
+                        _binding.rvNoteList.visibility = View.VISIBLE
+                        _binding.tvEmptyList.visibility = View.GONE
+                        viewModel.getNotes()
+                    }
+                }
+                return false
+            }
+        })
     }
 }
 
