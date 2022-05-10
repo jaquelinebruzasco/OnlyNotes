@@ -11,32 +11,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EditNoteFragmentViewModel @Inject constructor(
+class TrashBSDFragmentViewModel @Inject constructor(
     private val repository: OnlyNotesRepository,
     private val trashRepository: TrashRepository
 ) : ViewModel() {
 
-    fun insert(notesModel: NotesModel) {
-        viewModelScope.launch {
-            repository.insert(notesModel)
-        }
+    fun permanentlyDelete(note: TrashNotesModel) = viewModelScope.launch {
+        trashRepository.delete(note)
     }
 
-    fun delete(notesModel: NotesModel) = viewModelScope.launch {
-        repository.delete(notesModel)
-    }
-
-    fun insertTrash(note: NotesModel) {
+    fun restoreNote(note: TrashNotesModel) {
         viewModelScope.launch {
-            trashRepository.insert(
-                TrashNotesModel(
-                id = note.id ?: 0,
-                title = note.title ?: "",
-                text = note.text ?: "",
-                category = note.category ?: ""
+            trashRepository.delete(note)
+            repository.insert(
+                NotesModel(
+                    id = note.id,
+                    title = note.title,
+                    text = note.text,
+                    category = note.category
                 )
             )
         }
     }
 }
-

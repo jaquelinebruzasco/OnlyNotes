@@ -1,7 +1,6 @@
 package com.jaquelinebruzasco.onlynotes.ui.fragments
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,6 +64,7 @@ class EditNoteFragment : Fragment() {
                         Toast.makeText(requireContext(), R.string.delete_note, Toast.LENGTH_LONG)
                             .show()
                     }
+                    viewModel.insertTrash(it)
                 }
             } else {
                 Toast.makeText(requireContext(), R.string.discard_note, Toast.LENGTH_LONG)
@@ -104,7 +104,6 @@ class EditNoteFragment : Fragment() {
                 _binding.ivCategorize.setOnClickListener {
                     args.editNotes?.let {
                         val dialog = CategorizeBSDFragment(it, ::onCategorySaved)
-                        dialog.isCancelable = false
                         dialog.show(requireActivity().supportFragmentManager, BOTTOM_SHEET_TAG)
                     }
                 }

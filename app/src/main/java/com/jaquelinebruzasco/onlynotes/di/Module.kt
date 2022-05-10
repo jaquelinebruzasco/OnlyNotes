@@ -2,8 +2,6 @@ package com.jaquelinebruzasco.onlynotes.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jaquelinebruzasco.onlynotes.domain.local.CategoryDatabase
-import com.jaquelinebruzasco.onlynotes.domain.local.DatabaseConstants.Companion.CATEGORY_DATABASE_NAME
 import com.jaquelinebruzasco.onlynotes.domain.local.DatabaseConstants.Companion.DATABASE_NAME
 import com.jaquelinebruzasco.onlynotes.domain.local.OnlyNotesDatabase
 import dagger.Module
@@ -33,15 +31,9 @@ object Module {
 
     @Singleton
     @Provides
-    fun provideCategoryDatabase(
-        @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
-        context,
-        CategoryDatabase::class.java,
-        CATEGORY_DATABASE_NAME
-    ).build()
+    fun provideCategoryDao(database: OnlyNotesDatabase) = database.categoryDao()
 
     @Singleton
     @Provides
-    fun provideCategoryDao(database: CategoryDatabase) = database.categoryDao()
+    fun provideTrashDao(database: OnlyNotesDatabase) = database.trashDao()
 }

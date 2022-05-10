@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="12dp"
     android:minHeight="200dp"
     app:cardElevation="@dimen/default_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="24dp">
 
         <TextView
-            android:id="@+id/tv_edit_category"
+            android:id="@+id/tv_delete_or_restore"
             style="@style/Body_Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_bottom_sheet_dialog_edit"
+            android:layout_margin="@dimen/default_margin"
+            android:text="@string/fragment_bottom_sheet_dialog_trash_delete_restore"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_edit_category"
-            style="@style/Body"
-            android:paddingVertical="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:background="@null"
-            android:hint="@string/fragment_bottom_sheet_dialog_enter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_edit_category" />
 
         <View
             android:id="@+id/divisor"
@@ -43,33 +33,36 @@
             android:background="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_edit_category" />
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_or_restore" />
 
-        <ImageView
-            android:id="@+id/iv_save"
+        <TextView
+            android:id="@+id/tv_delete"
+            style="@style/Body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:drawablePadding="4dp"
             android:paddingVertical="12dp"
-            android:src="@drawable/ic_save_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_cancel"
-            app:layout_constraintTop_toBottomOf="@id/divisor" />
-
-        <ImageView
-            android:id="@+id/iv_cancel"
-            android:layout_width="0dp"
-            android:paddingVertical="12dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
-            android:src="@drawable/ic_cancel_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/iv_save"
+            android:text="@string/fragment_bottom_sheet_dialog_trash_delete"
+            app:drawableStartCompat="@drawable/ic_trash_icon"
+            app:layout_constraintEnd_toStartOf="@id/tv_restore"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divisor" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_restore"
+            style="@style/Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:drawablePadding="4dp"
+            android:paddingVertical="12dp"
+            android:text="@string/fragment_bottom_sheet_dialog_trash_restore"
+            android:textAlignment="textEnd"
+            app:drawableEndCompat="@drawable/ic_restore_from_trash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_delete"
+            app:layout_constraintTop_toBottomOf="@id/divisor" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

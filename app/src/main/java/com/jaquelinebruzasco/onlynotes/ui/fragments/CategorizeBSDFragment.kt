@@ -32,21 +32,16 @@ class CategorizeBSDFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBottomSheetDialogCategorizeBinding.inflate(inflater, container, false)
         return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
         setupRecycleView()
         initObservables()
         viewModel.getCategory()
-    }
-
-    private fun initView() {
-        _binding.ivCancel.setOnClickListener { this@CategorizeBSDFragment.dismiss() }
     }
 
     private fun setupRecycleView() = with(_binding) {
@@ -79,6 +74,7 @@ class CategorizeBSDFragment(
                         save.invoke(state.noteData)
                         this@CategorizeBSDFragment.dismiss()
                     }
+                    else -> Unit
                 }
             }
         }

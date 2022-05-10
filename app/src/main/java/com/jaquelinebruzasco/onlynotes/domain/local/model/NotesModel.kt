@@ -12,5 +12,3 @@ data class NotesModel(
     val text: String?,
     val category: String? = ""
 ): Serializable
-
-

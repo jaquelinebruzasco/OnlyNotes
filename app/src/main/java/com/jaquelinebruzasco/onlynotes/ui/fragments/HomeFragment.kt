@@ -89,8 +89,9 @@ class HomeFragment : Fragment() {
         findNavController().navigate(navigation)
     }
 
-    private fun itemTouchHelperCallback(): ItemTouchHelper.SimpleCallback{
-        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+    private fun itemTouchHelperCallback(): ItemTouchHelper.SimpleCallback {
+        return object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -103,8 +104,10 @@ class HomeFragment : Fragment() {
                 val note = noteListAdapter.getNoteAtPosition(viewHolder.adapterPosition)
                 note?.let {
                     viewModel.delete(it).also {
-                        Toast.makeText(requireContext(), R.string.delete_note, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), R.string.delete_note, Toast.LENGTH_LONG)
+                            .show()
                     }
+                    viewModel.insertTrash(it)
                 }
             }
         }
